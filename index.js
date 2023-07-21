@@ -1,9 +1,30 @@
 // import fs from 'fs'; // modulo fs, sistema de
 // import path from 'path';
-import chalk from 'chalk';
-import { routeUser, pathExists, makePathAbsolute } from './functions';
+// import chalk from 'chalk';
+import { pathExists, absoluteRoute } from './functions';
 
-const mdLinks = () => {
+// Función MD-Links
+const mdLinks = (path) => new Promise((resolve, reject) => {
+  if (!pathExists(path)) {
+    reject(new Error('Error, la ruta no existe'));
+  } else {
+    const route = absoluteRoute(path);
+    // console.log('La ruta existe');
+    console.log('Ruta absoluta:', route);
+    path.resolve();
+  }
+});
+
+// Llamada a la función mdLinks con una ruta a verificar
+const userPath = process.argv[2];
+mdLinks(userPath)
+  .then(() => {
+    // Manejar los datos si es necesario
+  })
+  .catch((error) => {
+    console.error(error.message); // Mostrar el error si la ruta no existe
+  });
+/* const mdLinks = () => {
   // Validar si la ruta existe
   if (!pathExists(routeUser)) {
     console.log(chalk.red.bold('Error, la ruta no existe'));
@@ -16,7 +37,7 @@ const mdLinks = () => {
   console.log(chalk.green.bold('Ruta absoluta:', absoluteRoute)); // mostrar la ruta absoluta
 };
 
-mdLinks();
+mdLinks(); */
 
 /* -----------------------------------Pruebas----------------------------------------------
 // Ruta ingresada
