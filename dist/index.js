@@ -1,22 +1,28 @@
-const fs = require('fs');
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.mdLinks = void 0;
+const _fs = _interopRequireDefault(require('fs'));
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// modulo fs, sistema de archivos
 
-const mdLinks = (path, options) => {
-  return new Promise((resolve, reject) => { 
+// const chalk = require("chalk");
+
+const mdLinks = function mdLinks(path, options) {
+  return new Promise((resolve, reject) => {
     // Identifica si la ruta existe
-    if(fs.existsSync(path)) {
-    // Chequear o convertir a una ruta absoluta
-    // Probar si esa ruta es un archivo o un directorio
-    // Si es un directorio filtrar los archivos md
+    if (_fs.default.existsSync(path)) {
+      // resolve('La ruta existe');
+      // Chequear o convertir a una ruta absoluta
+      // Probar si esa ruta es un archivo o un directorio
+      // Si es un directorio filtrar los archivos md
     } else {
-    // Si no existe la ruta, rechaza la promesa
+      // Si no existe la ruta, rechaza la promesa
       reject('La ruta no existe');
     }
   });
-}
-
-module.exports = {
-mdLinks
 };
 
-//import imagen from './thumb.png';
+// import image from './thumb.png'
+exports.mdLinks = mdLinks;
