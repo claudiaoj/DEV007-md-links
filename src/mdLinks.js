@@ -1,29 +1,36 @@
 // import fs from 'fs'; // modulo fs, sistema de
-// import path from 'path';
+import path from 'path';
 // import chalk from 'chalk';
-import { pathExists, absoluteRoute } from './functions';
+// import { rejects } from 'assert';
+import {
+  absolutePath, pathExists, file, // directory,
+  // extname,
+// eslint-disable-next-line import/extensions
+} from './functions.js';
 
-// Función MD-Links
-const mdLinks = (path) => new Promise((resolve, reject) => {
-  if (!pathExists(path)) {
-    reject(new Error('Error, la ruta no existe'));
-  } else {
-    const route = absoluteRoute(path);
-    // console.log('La ruta existe');
-    console.log('Ruta absoluta:', route);
-    path.resolve();
+// Función mdLinks
+const mdLinks = (pathUser /* options */) => new Promise((resolve, reject) => {
+  if (!pathExists(pathUser)) {
+    reject(new Error('La ruta no existe. Por favor, ingresa una ruta valida.'));
   }
+  if (!absolutePath(pathUser)) {
+    resolve(`La ruta absoluta es: ${path.resolve(pathUser)}`);
+  }
+  if (file(pathUser).isFile()) {
+    resolve('Es un archivo');
+  }
+  /* if (directory(pathUser)) {
+    resolve('Es un directorio-carpeta');
+  } */
+  /* if (extname === '.md') {
+    resolve('El archivo es Markdown (.md)');
+  } else {
+    rejects('El archivo no es Markdown (.md)');
+  } */
 });
 
-// Llamada a la función mdLinks con una ruta a verificar
-const userPath = process.argv[2];
-mdLinks(userPath)
-  .then(() => {
-    // Manejar los datos si es necesario
-  })
-  .catch((error) => {
-    console.error(error.message); // Mostrar el error si la ruta no existe
-  });
+/* --------------Prueba 1 -----------------------------*/
+
 /* const mdLinks = () => {
   // Validar si la ruta existe
   if (!pathExists(routeUser)) {
@@ -39,7 +46,7 @@ mdLinks(userPath)
 
 mdLinks(); */
 
-/* -----------------------------------Pruebas----------------------------------------------
+/* -----------------------------------Prueba 2----------------------------------------------
 // Ruta ingresada
 /* const routeUser = process.argv[2];
 // Para evaluar si existe la ruta
@@ -77,7 +84,7 @@ const mdLinks = () => {
 };
 mdLinks(); */
 
-/* ----------------2da Prueba-------------------------------
+/* ----------------Prueba 3-------------------------------
 
 // Ingresamos la ruta ./README.md
 /* const routeUser = process.argv[2];
@@ -103,3 +110,5 @@ if (mdLinks(routeUser) === false) {
     reject('La ruta no existe');
   }
 }); */
+
+export default mdLinks;

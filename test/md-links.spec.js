@@ -1,15 +1,26 @@
-// const { mdLinks } = require('../index.js');
+import { describe, it, expect } from 'jest';
+// eslint-disable-next-line import/no-unresolved, import/extensions
+import mdLinks from '../src/mdLinks.js';
 
-import { mdLinks } from '../index';
+// eslint-disable-next-line import/extensions
+// import { pathExists } from '../src/functions.js';
 
 describe('mdLinks', () => {
-  it('should...', () => {
-    console.log('FIX ME!');
+  it('It a function', () => {
+    expect(typeof mdLinks).toBe('function');
   });
   /* it('Deberia devolver una promesa', () => {
     expect(mdLinks()).toBe(typeof Promise);
   }); */
-  it('Deberia rechazar cuando el path no existe', () => mdLinks('/clau/cursos/estepathnoexiste.md').catch((error) => {
-    expect(error).toBe('La ruta no existe');
+
+  // eslint-disable-next-line max-len
+  it('Should reject when path does not exist', () => mdLinks('/clau/cursos/pathnoexist.md').catch((error) => {
+    expect(error).toBe('Path is not exist');
   }));
 });
+
+/* describe('pathExists', () => {
+  it('It a function', () => {
+    expect(typeof pathExists).toBe('function');
+  });
+}); */
