@@ -17,19 +17,24 @@ import chalk from 'chalk';
 import mdLinks from './mdLinks.js';
 
 const path = process.argv[2];
-console.log(chalk.yellow('LA ruta recibida:', path));
+console.log(chalk.yellow('The route received:', path));
 
 mdLinks(path)
-  .then((links) => {
-    if (typeof links === 'string') {
-      console.log(chalk.green.bold(links));
+  // Se ejecutara cuando se resuelva con exito
+  .then((res) => {
+    if (typeof res === 'string') {
       // Muestra el mensaje de 'Es un archivo .md, pero no contiene links.'
+      console.log(chalk.green.bold(res));
     } else {
-      console.log(chalk.green.bold('Es un archivo .md\n'));
-      console.log(chalk.magenta('Links encontrados:\n'));
-      links.forEach((link, index) => {
-        console.log(chalk.magenta(`${index + 1}. Texto: ${link.text} - URL: ${link.url}`));
-      });
+      console.log(chalk.green.bold('It is a .md file\n'));
+      console.log(chalk.magenta('Links found:\n'));
+      const linkObjects = res.map((link) => ({
+        href: link.href,
+        text: link.text,
+        file: link.file,
+      }));
+
+      console.log(linkObjects);
     }
   })
   .catch((error) => {

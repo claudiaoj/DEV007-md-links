@@ -3,7 +3,7 @@
 import path from 'path';
 
 import {
-  absolutePath, pathExists, file,
+  absolutePath, pathExists, getStats,
   directory, extname, readMdFile,
 // eslint-disable-next-line import/extensions
 } from './functions.js';
@@ -11,26 +11,31 @@ import {
 // Función mdLinks
 const mdLinks = (pathUser /* options */) => new Promise((resolve, reject) => {
   if (!pathExists(pathUser)) {
-    reject(new Error('La ruta no existe. Por favor, ingresa una ruta valida.'));
+    reject(new Error('The route does not exist. Please enter a valid path'));
   }
   if (!absolutePath(pathUser)) {
-    resolve(`La ruta absoluta es: ${path.resolve(pathUser)}`);
+    resolve(`The absolute path is: ${path.resolve(pathUser)}`);
   }
-  if (file(pathUser).isFile()) {
+  if (getStats(pathUser).isFile()) {
     if (extname(pathUser) === '.md') {
       // Si es un archivo .md, leer los links
-      const links = readMdFile(pathUser);
+      const links = readMdFile(pathUser).map((link) => ({
+        href: link.url,
+        text: link.text,
+        file: path.resolve(pathUser),
+      }));
+
       if (links.length === 0) {
-        resolve('Es un archivo .md, pero no contiene links.');
+        resolve('It is a .md file, but it does not contain links.');
       } else {
         resolve(links);
       }
     } else {
-      reject(new Error('No es un archivo .md'));
+      reject(new Error('Not a .md file'));
     }
   }
   if (directory(pathUser)) {
-    resolve('Es un directorio');
+    resolve('Is a directory');
   }
 });
 

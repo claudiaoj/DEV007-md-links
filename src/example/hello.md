@@ -2,9 +2,10 @@
 
 ## Índice
 
-<a href="https://www.google.cl/">Google</a>
-<a href="https://www.laboratoria.la/">Instalación Node</a>
+[Google](https://www.google.cl)
+[Laboratoria](https://www.laboratoria.la/)
 
 https://nodejs.org/en
 
 
+Este [enlace](https://www.youtube.com/) te llevará a Youtube
