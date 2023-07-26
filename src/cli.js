@@ -12,6 +12,7 @@ mdLinks(path).then((res) => {
 });
 console.log();
 */
+
 import chalk from 'chalk';
 // eslint-disable-next-line import/extensions
 import mdLinks from './mdLinks.js';
@@ -31,14 +32,7 @@ mdLinks(path)
     // Si el resultado de "mdLinks" es un array de objetos (los enlaces encontrados)
       console.log(chalk.green.bold('There is .md files\n'));
       console.log(chalk.magenta('Links found:\n'));
-      // Convertir cada objeto de enlace en un nuevo objeto solo con las propiedad href, text y file
-      const linkObjects = res.map((link) => ({
-        href: link.href,
-        text: link.text,
-        file: link.file,
-      }));
-
-      console.log(linkObjects); // Muestra los objetos de enlace en la terminal
+      console.log(res); // Muestra los objetos de enlace en la terminal
     }
   })
   .catch((error) => {

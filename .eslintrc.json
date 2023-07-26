@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": "airbnb-base",
     "parserOptions": {
@@ -11,5 +12,10 @@
     "rules": {
         "no-console": "off"
     },
-    "plugins": ["import"]
+    "plugins": ["import"],
+    "overrides": [
+    {
+    "files": ["**/*.spec.js", "**/*.spec.jsx"]
+    }
+]
 }
