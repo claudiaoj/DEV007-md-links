@@ -17,26 +17,54 @@ import chalk from 'chalk';
 // eslint-disable-next-line import/extensions
 import mdLinks from './mdLinks.js';
 
-// Obtiene el argumento ingresado en la línea de comandos (ruta o archivo .md)
 const path = process.argv[2];
-console.log(chalk.yellow('The route received:', path)); // Muestra la ruta recibida
+const options = process.argv.slice(3);
 
-mdLinks(path)
-  // Se ejecutara cuando se resuelva con exito
+console.log(chalk.yellow('The route received:', path));
+
+const validateOption = options.includes('--validate') || options.includes('--v');
+const statsOption = options.includes('--stats') || options.includes('--s');
+
+mdLinks(path, { validate: validateOption, stats: statsOption })
   .then((res) => {
     if (typeof res === 'string') {
-    // Si el resultado de "mdLinks" es una cadena de texto, significa que es un mensaje informativo
-      // Muestra 'It is a .md file, but it does not contain links.'
       console.log(chalk.green.bold(res));
     } else {
-    // Si el resultado de "mdLinks" es un array de objetos (los enlaces encontrados)
-      console.log(chalk.green.bold('There is .md files\n'));
-      console.log(chalk.magenta('Links found:\n'));
-      console.log(res); // Muestra los objetos de enlace en la terminal
+      console.log(chalk.green.bold('There are .md files\n'));
+      if (validateOption && statsOption) {
+        const { totalLinks, uniqueLinks, brokenLinks } = res;
+
+        console.log(chalk.magenta('Validation and Stats:\n'));
+        console.log(chalk.cyan.bold(`Total links: ${totalLinks}`));
+        console.log(chalk.cyan.bold(`Unique links: ${uniqueLinks}`));
+        console.log(chalk.cyan.bold(`Broken links: ${brokenLinks}`));
+      } else if (validateOption) {
+        console.log(chalk.magenta('Validation:\n'));
+        res.forEach((link) => {
+          const {
+            href, text, file, status,
+          } = link;
+          const ok = status >= 200 && status < 400 ? 'OK' : 'Fail';
+
+          console.log(chalk.cyan(`href: ${href}`));
+          console.log(chalk.cyan(`text: ${text}`));
+          console.log(chalk.cyan(`file: ${file}`));
+          console.log(chalk.cyan(`status: ${status}`));
+          console.log(chalk.cyan(`ok: ${ok}\n`));
+        });
+      } else if (statsOption) {
+        const { totalLinks, uniqueLinks } = res;
+
+        console.log(chalk.magenta('Stats:\n'));
+        console.log(chalk.cyan.bold(`Total links: ${totalLinks}`));
+        console.log(chalk.cyan.bold(`Unique links: ${uniqueLinks}`));
+      } else {
+        console.log(chalk.magenta('Links found:\n'));
+        console.log(res);
+      }
     }
   })
   .catch((error) => {
-    // Si hay un error durante la ejecución de mdLinks: muestra ruta no válida o archivo inexistente
     console.log(chalk.red.bold(error.message));
   });
 

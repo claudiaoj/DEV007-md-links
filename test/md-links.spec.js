@@ -1,12 +1,15 @@
 // eslint-disable-next-line import/no-unresolved, import/extensions
 // import mdLinks from '../src/mdLinks.js';
+import {
+  absolutePath, directory, getStats,
+  pathExists, extname, // readMdFile,
+// getMdFilesRecursive,
+  // eslint-disable-next-line import/extensions
+} from '../src/functions.js';
 
 /* describe('mdLinks', () => {
   it('It a function', () => {
     expect(typeof mdLinks).toBe('function');
-  });
-  it('Deberia devolver una promesa', () => {
-    expect(mdLinks()).toBe(typeof Promise);
   });
 }); */
 // eslint-disable-next-line max-len, max-len, max-len
@@ -15,12 +18,6 @@
     expect(error).toBe('Path is not exist');
   }));
  */
-
-import {
-  absolutePath, directory, getStats,
-  pathExists, extname,
-  // eslint-disable-next-line import/extensions
-} from '../src/functions.js';
 
 describe('pathExists', () => {
   it('It a function', () => {
