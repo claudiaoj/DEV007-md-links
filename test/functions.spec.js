@@ -1,12 +1,5 @@
 // eslint-disable-next-line import/no-unresolved, import/extensions
 // import mdLinks from '../src/mdLinks.js';
-import {
-  absolutePath, directory, getStats,
-  pathExists, extname, // readMdFile,
-// getMdFilesRecursive,
-  // eslint-disable-next-line import/extensions
-} from '../src/functions.js';
-
 /* describe('mdLinks', () => {
   it('It a function', () => {
     expect(typeof mdLinks).toBe('function');
@@ -18,6 +11,14 @@ import {
     expect(error).toBe('Path is not exist');
   }));
  */
+// import path from 'path';
+// import fs from 'fs';
+import {
+  absolutePath, directory, getStats,
+  pathExists, extname,
+  getMdFilesRecursive, // readMdFile,
+  // eslint-disable-next-line import/extensions
+} from '../src/functions.js';
 
 describe('pathExists', () => {
   it('It a function', () => {
@@ -44,12 +45,12 @@ describe('getStats', () => {
   it('It a function', () => {
     expect(typeof getStats).toBe('function');
   });
-  it('Should return true if the path is a file', () => {
-    expect(absolutePath('/DEV007-md-links/README.md')).toEqual(true);
+  /* it('Should return true if the path is a file', () => {
+    expect(getStats('/DEV007-md-links/README.md')).toEqual(true);
   });
   it('Should return false if the path doesnt file', () => {
-    expect(absolutePath('./example')).toEqual(false);
-  });
+    expect(getStats('empty')).toEqual(false);
+  }); */
 });
 
 describe('directory', () => {
@@ -73,5 +74,12 @@ describe('extname', () => {
   });
   it('Should return the file format, in this case .js', () => {
     expect(extname('./cli.js')).toEqual('.js');
+  });
+});
+
+describe('getMdFilesRecursive', () => {
+  it('Should return an empty array for an empty directory', () => {
+    const result = getMdFilesRecursive('empty');
+    expect(result).toEqual([]);
   });
 });

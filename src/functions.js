@@ -15,23 +15,16 @@ export const extname = (route) => path.extname(route);
 
 // Lee el contenido de un archivo .md y extrae los links
 export const readMdFile = (route) => {
-  // Lee el contenido del archivo en la ruta especificada (route)
   const content = fs.readFileSync(route, 'utf8');
   const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/gm;
-  // Busca todas las coincidencias de enlaces en el contenido del archivo utilizando regex
-  // El método matchAll devuelve un iterador con todas las coincidencias encontradas
   const matches = Array.from(content.matchAll(linkRegex));
-  // eslint-disable-next-line max-len
-  // Map las coincidencias encontradas para formar un nuevo array de objetos que representan los enlaces
-  // Cada objeto tendrá las propiedades text y url
   const links = matches.map((match) => ({
-    text: match[1],
-    url: match[2],
+    text: match[1], // Corregir: text en lugar de href
+    href: match[2], // Corregir: href en lugar de text
+    file: path.resolve(route),
   }));
-  // Retorna el array de objetos que contiene los enlaces encontrados en el archivo .md
   return links;
 };
-
 // Obtener todos los archivos .md de un directorio y sus subdirectorios
 export const getMdFilesRecursive = (dir) => {
   let mdFiles = [];
