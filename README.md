@@ -1,4 +1,6 @@
-![3](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/dfc37b01-c487-4beb-8083-21310e61c6df)
+
+![header](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/997cd8e5-1828-4da9-8942-2c9e8c5bc861)
+
 # Markdown Link
 
 ## Índice
