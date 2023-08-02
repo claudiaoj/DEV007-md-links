@@ -40,7 +40,8 @@ const processLinks = (links, { validate, stats }) => {
 
 // Función principal mdLinks
 // eslint-disable-next-line max-len
-const mdLinks = (pathUser, { validate = false, stats = false } = {}) => new Promise((resolve, reject) => {
+const mdLinks = (pathUser, options = {}) => new Promise((resolve, reject) => {
+  const { validate = false, stats = false } = options;
   // Verifica si la ruta existe
   if (!pathExists(pathUser)) {
     // Si la ruta no existe, devuelve una promesa con un error

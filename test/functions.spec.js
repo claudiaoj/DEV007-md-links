@@ -78,7 +78,7 @@ describe('getMdFilesRecursive', () => {
     return { isFile: () => false, isDirectory: () => true };
   });
 
-  it('should return an array with all .md files in the directory and its subdirectories', () => {
+  it('Should return an array with all .md files in the directory and its subdirectories', () => {
     const result = getMdFilesRecursive('tempDir');
     expect(result).toEqual([
       'tempDir/file1.md',
