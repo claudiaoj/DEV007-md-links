@@ -30,7 +30,7 @@ mdLinks(path, { validate: validateOption, stats: statsOption })
       console.log(chalk.red('❯ '), (chalk.red.bold(`Broken links: ${brokenLinks}`)));
       // Si solo se incluyó la opción de validación
     } else if (validateOption) {
-      // Muetsra el resultado de validate en magenta con negrita
+      // Muestra el resultado de validate en magenta con negrita
       console.log(chalk.magenta.bold('Validation:\n'));
       res.forEach((link) => {
         const {
