@@ -5,10 +5,19 @@
     "node": ">=16.x"
   },
   "type": "module",
-  "main": "cli.js",
+  "main": "mdLinks.js",
     "bin": {
     "mdl" : "cli.js"
-}, 
+  }, 
+  "keywords": [
+    "node.js",
+    "http",
+    "mdlinks",
+    "project"],
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudiaoj/DEV007-md-links.git"
+  },
   "bootcamp": {
   "author": "Claudia Ortiz",
     "createdAt": "2023-06-20T14:05:58.211Z",
