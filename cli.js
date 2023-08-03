@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 // eslint-disable-next-line import/extensions
-import mdLinks from './mdLinks.js';
+import mdLinks from './src/mdLinks.js';
 
 // Obtiene la ruta del archivo y las opciones de la línea de comandos
 const path = process.argv[2];
 const options = process.argv.slice(3);
 
-console.log(chalk.yellow('The route received:', path));
+// console.log(chalk.yellow('The route received:', path));
 
 // Verifica si las opciones incluyen validate y stats
 const validateOption = options.includes('--validate') || options.includes('--v');
@@ -24,19 +24,20 @@ mdLinks(path, { validate: validateOption, stats: statsOption })
       // Si solo se incluyó la opción de validate y stats
     } else if (validateOption && statsOption) {
       const { totalLinks, uniqueLinks, brokenLinks } = res;
-      console.log(chalk.magenta('Validation and Stats:\n'));
-      console.log(chalk.cyan.bold(`Total links: ${totalLinks}`));
-      console.log(chalk.yellow.bold(`Unique links: ${uniqueLinks}`));
-      console.log(chalk.red.bold(`Broken links: ${brokenLinks}`));
+      console.log(chalk.magenta.bold('Validation and Stats:\n'));
+      console.log(chalk.blue('❯ '), (chalk.blue.bold(`Total links: ${totalLinks}`)));
+      console.log(chalk.yellow('❯ '), (chalk.yellow.bold(`Unique links: ${uniqueLinks}`)));
+      console.log(chalk.red('❯ '), (chalk.red.bold(`Broken links: ${brokenLinks}`)));
       // Si solo se incluyó la opción de validación
     } else if (validateOption) {
       // Muetsra el resultado de validate en magenta con negrita
-      console.log(chalk.magenta('Validation:\n'));
+      console.log(chalk.magenta.bold('Validation:\n'));
       res.forEach((link) => {
         const {
           href, text, file, status,
         } = link;
         const ok = status >= 200 && status < 400 ? 'OK' : 'FAIL';
+        console.log(chalk.magentaBright('      ——————     '));
         console.log(chalk.cyan(`href: ${href}`));
         console.log(chalk.cyan(`text: ${text}`));
         console.log(chalk.cyan(`file: ${file}`));
@@ -46,11 +47,11 @@ mdLinks(path, { validate: validateOption, stats: statsOption })
       // Si solo se incluyó la opción stats
     } else if (statsOption) {
       const { totalLinks, uniqueLinks } = res;
-      console.log(chalk.magenta('Stats:\n'));
-      console.log(chalk.cyan.bold(`Total links: ${totalLinks}`));
-      console.log(chalk.yellow.bold(`Unique links: ${uniqueLinks}`));
+      console.log(chalk.magenta.bold('Stats:\n'));
+      console.log(chalk.blue.bold('❯ '), (chalk.blue.bold(`Total links: ${totalLinks}`)));
+      console.log(chalk.yellow.bold('❯ '), (chalk.yellow.bold(`Unique links: ${uniqueLinks}`)));
     } else {
-      console.log(chalk.magenta('Links found:\n'));
+      console.log(chalk.magenta.bold('Links found:\n'));
       console.log(res);
     }
   })

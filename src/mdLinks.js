@@ -45,7 +45,7 @@ const mdLinks = (pathUser, options = {}) => new Promise((resolve, reject) => {
   // Verifica si la ruta existe
   if (!pathExists(pathUser)) {
     // Si la ruta no existe, devuelve una promesa con un error
-    reject(new Error('The route doesnt exist. Please enter a valid path'));
+    reject(new Error('The route doesn\'t exist. Please enter a valid path'));
   }
 
   // Verifica si la ruta no es absoluta
@@ -75,7 +75,7 @@ const mdLinks = (pathUser, options = {}) => new Promise((resolve, reject) => {
       .catch(reject);
   } else {
     // Si la ruta es un archivo pero no tiene extensión .md, se rechaza promesa con un error
-    reject(new Error('It is a file, but it is not .md'));
+    reject(new Error('It\'s a file, but it isn\'t .md'));
   }
 });
 

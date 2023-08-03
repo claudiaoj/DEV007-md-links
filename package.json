@@ -7,7 +7,7 @@
   "type": "module",
   "main": "cli.js",
     "bin": {
-    "mdl" : "cli.js.js"
+    "mdl" : "cli.js"
 }, 
   "bootcamp": {
   "author": "Claudia Ortiz",
