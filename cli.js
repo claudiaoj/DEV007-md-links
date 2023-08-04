@@ -38,8 +38,8 @@ mdLinks(path, { validate: validateOption, stats: statsOption })
         } = link;
         const ok = status >= 200 && status < 400 ? 'OK' : 'FAIL';
         console.log(chalk.magentaBright('      ——————     '));
-        console.log(chalk.cyan(`href: ${href}`));
         console.log(chalk.cyan(`text: ${text}`));
+        console.log(chalk.cyan(`href: ${href}`));
         console.log(chalk.cyan(`file: ${file}`));
         console.log(chalk.cyan(`status: ${status}`));
         console.log(chalk.cyan(`ok: ${ok}\n`));
