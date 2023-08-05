@@ -130,30 +130,30 @@ La librería se puede instalar con el siguiente comando desde la terminal:<br>
 Luego de la instalación puedes colocar alguno de los dos comandos indicados anteriormente `npx mdlinks <ruta del archivo>` ó `mdlinks <ruta del archivo>`. En ambos casos, te entregará la ruta absoluta para luego utilizarla.
 <br>
 <br>__Ejemplo 1__: `npx mdlinks <ruta del archivo>`
-<br><br><img src="/images/ej1.png" style= width:90%>
+<br><br><img src="/images/ej1.png" style= width:60%>
 
 
 <br>__Ejemplo 2__: `mdlinks <ruta del archivo>`
-<br><br><img src="/images/ej2.png" style= width:90%>
+<br><br><img src="/images/ej2.png" style= width:60%>
 <br>
 
 A continuación, para obtener los links de los archivos o directorios, de la ruta absoluta indicada, debes colocar en la terminal:                                                
 <br>__Ejemplo 1:__ `npx mdlinks <ruta absoluta>` 
-<br><br><img src="/images/ej1.1.png" style= width:90%>
+<br><br><img src="/images/ej1.1.png" style= width:80%>
 
 <br><br>__Ejemplo 2 :__ `mdlinks <ruta absoluta>`
-<br><br><img src="/images/ej2.1.png" style= width:90%>
+<br><br><img src="/images/ej2.1.png" style= width:80%>
 
 
 Ahora, puedes colocar la opciones disponibles de `--validate`, `--stats`ó `--validate --stats` para conocer los links válidos y las estadísticas de los links encontrados:
 
 <br>__Ejemplo 1:__ `npx mdlinks <ruta absoluta> --validate` - `npx mdlinks <ruta absoluta> --stats` - `npx mdlinks <ruta absoluta> --validate --stats`
-<br><br><img src="/images/ej1.2v.png" style= width:90%>
-<img src="/images/ej1.3vs.png" style= width:90%>
+<br><br><img src="/images/ej1.2v.png" style= width:80%>
+<img src="/images/ej1.3vs.png" style= width:80%>
 
 <br><br>__Ejemplo 2 :__ `mdlinks <ruta absoluta> --validate` - `mdlinks <ruta absoluta> --stats` - `mdlinks <ruta absoluta> --validate --stats`
-<br><br><img src="/images/ej2.2v.png" style= width:90%>
-<img src="/images/ej2.3vs.png" style= width:90%>
+<br><br><img src="/images/ej2.2v.png" style= width:80%>
+<img src="/images/ej2.3vs.png" style= width:80%>
 
 <br> ***Importante: puedes utilizar `--validate` reemplazándolo por `--v`, `--stats` por `--s` y `--validate --stats` por `--v --s`***
 <br>
@@ -162,11 +162,11 @@ Finalmente, existen otros mensajes que pueden aparecen en caso de que se coloque
 
 __Ejemplos :__
 <br><br> __*Ruta no válida o inexistente <br>__
-<img src="/images/pathinvalid.png" style= width:90%>
+<img src="/images/pathinvalid.png" style= width:70%>
 <br><br> __*Es un archivo pero no .md <br>__
-<img src="/images/nomd.png" style= width:90%>
+<img src="/images/nomd.png" style= width:70%>
 <br><br> __*El archivo/directorio no contiene links <br>__
-<img src="/images/fileempty.png" style= width:90%>
+<img src="/images/fileempty.png" style= width:70%>
 
 
 
@@ -174,7 +174,7 @@ __Ejemplos :__
 Los test realizados cubren el 85,1 de statements, 83,3% de branch, 81,25% de functions y 86,8% de lines.
 <br>
 
-<img src="/images/test.png" style= width:40%>
+<img src="/images/test.png" style= width:50%>
 
 
 
