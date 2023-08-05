@@ -12,6 +12,7 @@
 * [5. Instalación y Guía de Uso](#5-instalación-y-guía-de-uso)
 * [6. Pruebas Unitarias](#6-pruebas-unitarias)
 * [7. Checklist](#7-checklist)
+* [8. Board con la implementación de la librería](#8-board-con-la-implementación-de-la-librería)
 
 ***
 
@@ -36,7 +37,7 @@ MdLinks es una herramienta de línea de comandos desarrollada en Node.js que te 
 El diagrama de flujo representa el proceso de funcionamiento de la herramienta mdLinks. Proporciona una visión general de las principales etapas y acciones que se llevan a cabo durante su ejecución.
 
 
-![diagramadeflujo](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/7f0d9b80-6c0f-4511-b4f0-848a76783dfb)
+<br><br><img src="/images/diagramadeflujo.png" style= width:80%>
 
 
 ## 4. Documentación Técnica de la Libreria
@@ -129,29 +130,30 @@ La librería se puede instalar con el siguiente comando desde la terminal:<br>
 Luego de la instalación puedes colocar alguno de los dos comandos indicados anteriormente `npx mdlinks <ruta del archivo>` ó `mdlinks <ruta del archivo>`. En ambos casos, te entregará la ruta absoluta para luego utilizarla.
 <br>
 <br>__Ejemplo 1__: `npx mdlinks <ruta del archivo>`
-<br><br>![ej1](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/d4e3290c-c939-4f64-a96a-6ebd50548f13)
+<br><br><img src="/images/ej1.png" style= width:90%>
 
 
 <br>__Ejemplo 2__: `mdlinks <ruta del archivo>`
-<br><br>
-![2](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/42eefe08-418a-4115-864e-cced64a385c7)
+<br><br><img src="/images/ej2.png" style= width:90%>
 <br>
 
 A continuación, para obtener los links de los archivos o directorios, de la ruta absoluta indicada, debes colocar en la terminal:                                                
 <br>__Ejemplo 1:__ `npx mdlinks <ruta absoluta>` 
-<br><br>![ej1 1](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/4a36494f-bac3-49a9-b435-6678c1a70ed8)
+<br><br><img src="/images/ej1.1.png" style= width:90%>
 
 <br><br>__Ejemplo 2 :__ `mdlinks <ruta absoluta>`
-<br><br>![ej2 1](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/710d9fd7-dfc4-4104-950c-5701105855cc)
+<br><br><img src="/images/ej2.1.png" style= width:90%>
 
 
 Ahora, puedes colocar la opciones disponibles de `--validate`, `--stats`ó `--validate --stats` para conocer los links válidos y las estadísticas de los links encontrados:
 
 <br>__Ejemplo 1:__ `npx mdlinks <ruta absoluta> --validate` - `npx mdlinks <ruta absoluta> --stats` - `npx mdlinks <ruta absoluta> --validate --stats`
-<br><br>![ej1 v s ](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/68ecd901-7ca6-4361-8877-734d608ed598)
+<br><br><img src="/images/ej1.2v.png" style= width:90%>
+<img src="/images/ej1.3vs.png" style= width:90%>
 
 <br><br>__Ejemplo 2 :__ `mdlinks <ruta absoluta> --validate` - `mdlinks <ruta absoluta> --stats` - `mdlinks <ruta absoluta> --validate --stats`
-<br><br>![ej2 v s](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/7809456a-ce05-4fce-b4e5-633c5ddfb349)
+<br><br><img src="/images/ej2.2v.png" style= width:90%>
+<img src="/images/ej2.3vs.png" style= width:90%>
 
 <br> ***Importante: puedes utilizar `--validate` reemplazándolo por `--v`, `--stats` por `--s` y `--validate --stats` por `--v --s`***
 <br>
@@ -160,11 +162,11 @@ Finalmente, existen otros mensajes que pueden aparecen en caso de que se coloque
 
 __Ejemplos :__
 <br><br> __*Ruta no válida o inexistente <br>__
-![path inválido](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/75885368-bbbd-457b-aaee-bbb1e99a3557)
+<img src="/images/pathinvalid.png" style= width:90%>
 <br><br> __*Es un archivo pero no .md <br>__
-![nomd](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/61ceeaa3-c214-40c8-8ef4-dd81b3626282)
+<img src="/images/nomd.png" style= width:90%>
 <br><br> __*El archivo/directorio no contiene links <br>__
-![fileempty](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/67e39fe4-7fe8-456d-a23b-a6b152bae85a)
+<img src="/images/fileempty.png" style= width:90%>
 
 
 
@@ -172,7 +174,8 @@ __Ejemplos :__
 Los test realizados cubren el 85,1 de statements, 83,3% de branch, 81,25% de functions y 86,8% de lines.
 <br>
 
-![Captura de Pantalla 2023-08-01 a la(s) 14 05 12](https://github.com/claudiaoj/DEV007-md-links/assets/129541400/0e9cdca9-eb7e-4db2-9e86-ec117d08b701)
+<img src="/images/test.png" style= width:40%>
+
 
 
 ## 7. Checklist
@@ -208,3 +211,6 @@ Los test realizados cubren el 85,1 de statements, 83,3% de branch, 81,25% de fun
 * [x] Pasa tests (y linters) (`npm test`).
 
 
+## 8. Board con la implementación de la librería
+
+Puedes visualizar el backlog con la implementación de la librería en <a href="https://github.com/users/claudiaoj/projects/1/views/1">Github Project</a>.
