@@ -12,7 +12,7 @@
 * [5. Instalación y Guía de Uso](#5-instalación-y-guía-de-uso)
 * [6. Pruebas Unitarias](#6-pruebas-unitarias)
 * [7. Checklist](#7-checklist)
-* [8. Board con la implementación de la librería](#8-board-con-la-implementación-de-la-librería)
+* [8. Board](#8-board)
 
 ***
 
@@ -211,6 +211,6 @@ Los test realizados cubren el 85,1 de statements, 83,3% de branch, 81,25% de fun
 * [x] Pasa tests (y linters) (`npm test`).
 
 
-## 8. Board con la implementación de la librería
+## 8. Board
 
 Puedes visualizar el backlog con la implementación de la librería en <a href="https://github.com/users/claudiaoj/projects/1/views/1">Github Project</a>.
