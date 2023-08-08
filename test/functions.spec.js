@@ -59,7 +59,7 @@ describe('extname', () => {
 });
 
 describe('getMdFilesRecursive', () => {
-  // Función mock fs.readdirSync
+  // Función mock fs.readdirSync, simula el comportamiento
   jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
     if (dir === 'tempDir') {
       return ['file1.md', 'file2.js', 'subdir'];
@@ -144,37 +144,36 @@ describe('validateLink', () => {
 });
 
 describe('calculateStats', () => {
-  it('Should calculate stats correctly for a set of links', () => {
-    // Array de enlaces para la prueba
+  it('Should return correct stats for links', () => {
     const links = [
-      { href: 'https://www.google.com', status: 200 },
-      { href: 'https://www.example.com', status: 200 },
-      { href: 'https://www.example.com', status: 404 },
-      { href: 'https://www.invalidlink.com', status: 500 },
+      { href: 'https://example.com/page1', status: 200 },
+      { href: 'https://example.com/page2', status: 404 },
+      { href: 'https://example.com/page3', status: 200 },
+      { href: 'https://example.com/page1', status: 200 }, // Duplicate link
     ];
-
-    // Realiza la prueba llamando a la función calculateStats
-    const stats = calculateStats(links);
-    // Verifica que los cálculos sean correctos
-    expect(stats.totalLinks).toBe(4); // Total de enlaces en el array
-    expect(stats.uniqueLinks).toBe(3); // Enlaces únicos (ignora duplicados)
-    expect(stats.brokenLinks).toBe(2); // Enlaces con status >= 400 (rotos)
-    // Verifica que los enlaces únicos también sean correctos
-    expect(stats.uniqueLinksArray).toEqual([
-      'https://www.google.com',
-      'https://www.example.com',
-      'https://www.invalidlink.com',
-    ]);
+    const result = calculateStats(links);
+    expect(result.totalLinks).toBe(4);
+    expect(result.uniqueLinks).toBe(3);
+    expect(result.brokenLinks).toBe(1);
   });
-  it('Should return zero stats for an empty array of links', () => {
-    // Array de enlaces vacío
+
+  it('Should return correct stats when there are no broken links', () => {
+    const links = [
+      { href: 'https://example.com/page1', status: 200 },
+      { href: 'https://example.com/page2', status: 200 },
+      { href: 'https://example.com/page3', status: 200 },
+    ];
+    const result = calculateStats(links);
+    expect(result.totalLinks).toBe(3);
+    expect(result.uniqueLinks).toBe(3);
+    expect(result.brokenLinks).toBe(0);
+  });
+
+  it('Should return correct stats for empty link array', () => {
     const links = [];
-    // Realiza la prueba llamando a la función calculateStats
-    const stats = calculateStats(links);
-    // Verifica que todos los valores sean cero para un array vacío
-    expect(stats.totalLinks).toBe(0);
-    expect(stats.uniqueLinks).toBe(0);
-    expect(stats.brokenLinks).toBe(0);
-    expect(stats.uniqueLinksArray).toEqual([]);
+    const result = calculateStats(links);
+    expect(result.totalLinks).toBe(0);
+    expect(result.uniqueLinks).toBe(0);
+    expect(result.brokenLinks).toBe(0);
   });
 });

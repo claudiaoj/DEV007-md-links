@@ -17,7 +17,8 @@ export const extname = (route) => path.extname(route);
 
 // Lee el contenido de un archivo .md y extrae los links
 export const readMdFile = (route) => {
-  // Lee el contenido del archivo en formato UTF-8
+  // eslint-disable-next-line max-len
+  // Método readfileSync lee el contenido del archivo en formato UTF-8(como se van a codificar los caracteres)
   const content = fs.readFileSync(route, 'utf8');
   // Expresión regular para buscar patrones de enlaces en el contenido
   const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/gm;
@@ -34,6 +35,7 @@ export const readMdFile = (route) => {
 };
 // Obtiene todos los archivos .md de un directorio y sus subdirectorios
 export const getMdFilesRecursive = (dir) => {
+  // Almacena las rutas de los archivos .md encontrados en todos los directorios
   let mdFiles = [];
 
   // Lee los archivos y subdirectorios del directorio
@@ -93,7 +95,5 @@ export const calculateStats = (links) => {
     totalLinks,
     uniqueLinks,
     brokenLinks,
-    // Array de enlaces únicos obtenidos del conjunto
-    uniqueLinksArray: Array.from(uniqueLinksSet),
   };
 };

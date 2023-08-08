@@ -48,7 +48,7 @@ const mdLinks = (pathUser, options = {}) => new Promise((resolve, reject) => {
     reject(new Error('The route doesn\'t exist. Please enter a valid path'));
   }
 
-  // Verifica si la ruta no es absoluta
+  // En caso que la ruta si existe, verifica si la ruta no es absoluta
   if (!absolutePath(pathUser)) {
     // Si no es absoluta, devuelve una promesa con la ruta absoluta
     resolve(`The absolute path is: ${path.resolve(pathUser)}`);
