@@ -34,7 +34,7 @@ mdLinks(path, { validate: validateOption, stats: statsOption })
       console.log(chalk.magenta.bold('Validation:\n'));
       res.forEach((link) => {
         const {
-          href, text, file, status,
+          text, href, file, status,
         } = link;
         const ok = status >= 200 && status < 400 ? 'OK' : 'FAIL';
         console.log(chalk.magentaBright('      ——————     '));

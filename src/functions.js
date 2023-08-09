@@ -1,4 +1,3 @@
-// import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 // Axios para realizar solicitudes HTTP
@@ -66,8 +65,8 @@ export const validateLink = (link) => new Promise((resolve) => {
   axios.get(link.href)
     .then((response) => {
       // Si la solicitud es exitosa, actualiza las prop status y statusText del objeto validatedLink
-      validatedLink.status = response.status;
-      validatedLink.statusText = response.statusText;
+      validatedLink.status = response.status; // Código de estado HTTP (ej: 200)
+      validatedLink.statusText = response.statusText; // Descripción del estado (ej: OK)
       // Resuelve la promesa con validatedLink que contiene la información del enlace validado
       resolve(validatedLink);
     })
@@ -83,6 +82,7 @@ export const validateLink = (link) => new Promise((resolve) => {
 // Función para calcular las stats de un conjunto de enlaces
 export const calculateStats = (links) => {
   // New set, para almacenar enlaces únicos usando la propiedad href de cada enlace
+  // Contendra URLs únicas sin duplicados
   const uniqueLinksSet = new Set(links.map((link) => link.href));
   // Obtiene la cantidad de enlaces únicos contando el tamaño del conjunto
   const uniqueLinks = uniqueLinksSet.size;

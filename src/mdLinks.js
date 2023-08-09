@@ -10,14 +10,13 @@ const processLinks = (links, { validate, stats }) => {
   // Si se elige validate(true)
   if (validate) {
     // Valida cada enlace en paralelo usando Promise.all y validateLink
+    // Devuelve un array de enlaces validados
     return Promise.all(links.map((link) => validateLink(link)))
       .then((validatedLinks) => {
         // Si también se elige la opción stats(true)
         if (stats) {
           // Calcula las stats usando la fx calculateStats en base a los enlaces validados
           const statsResult = calculateStats(validatedLinks);
-          // Añade al resultado la propiedad 'uniqueLinks' con el número de enlaces únicos
-          statsResult.uniqueLinks = statsResult.uniqueLinksArray.length;
           return statsResult;
         }
         // Si solo se solicito validate devuelve los enlaces validados
@@ -28,8 +27,6 @@ const processLinks = (links, { validate, stats }) => {
   if (stats) {
     // Calcula las stats usando la fx calculateStats en base a los enlaces
     const statsResult = calculateStats(links);
-    // Añade al resultado la propiedad 'uniqueLinks' con el número de enlaces únicos
-    statsResult.uniqueLinks = statsResult.uniqueLinksArray.length;
     // Resuelve la promesa con el resultado de las stats
     return Promise.resolve(statsResult);
   }
@@ -39,7 +36,6 @@ const processLinks = (links, { validate, stats }) => {
 };
 
 // Función principal mdLinks
-// eslint-disable-next-line max-len
 const mdLinks = (pathUser, options = {}) => new Promise((resolve, reject) => {
   const { validate = false, stats = false } = options;
   // Verifica si la ruta existe
