@@ -1,12 +1,10 @@
 import path from 'path';
 import fs from 'fs';
-// Axios para realizar solicitudes HTTP
 import axios from 'axios';
 import {
   absolutePath, directory, getStats,
   pathExists, extname, getMdFilesRecursive,
   validateLink, calculateStats,
-  // readMdFile,
   // eslint-disable-next-line import/extensions
 } from '../src/functions.js';
 
@@ -59,7 +57,6 @@ describe('extname', () => {
 });
 
 describe('getMdFilesRecursive', () => {
-  // Función mock fs.readdirSync, simula el comportamiento
   jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
     if (dir === 'tempDir') {
       return ['file1.md', 'file2.js', 'subdir'];
@@ -69,7 +66,6 @@ describe('getMdFilesRecursive', () => {
     return [];
   });
 
-  // Función mock fs.statSync
   jest.spyOn(fs, 'statSync').mockImplementation((file) => {
     const baseName = path.basename(file);
     if (baseName === 'file1.md' || baseName === 'file3.md') {
@@ -91,27 +87,20 @@ describe('getMdFilesRecursive', () => {
   });
 });
 
-// Mock de axios para simular la solicitud HTTP
 jest.mock('axios');
 
 describe('validateLink', () => {
   it('Should resolve with validated link when HTTP request is successful', () => {
-    // Mock, la respuesta exitosa de la solicitud HTTP
     const response = {
       status: 200,
       statusText: 'OK',
     };
     axios.get.mockResolvedValue(response);
-
-    // Objeto link a validar
     const link = {
       text: 'Google',
       href: 'https://www.google.com',
     };
-
-    // Realiza la prueba llamando a la función validateLink
     return validateLink(link).then((validatedLink) => {
-      // Verifica que la función haya resuelto correctamente con el objeto link validado
       expect(validatedLink).toEqual({
         text: 'Google',
         href: 'https://www.google.com',
@@ -121,18 +110,12 @@ describe('validateLink', () => {
     });
   });
   it('Should resolve with validated link with 404 status when HTTP request fails', () => {
-    // Mock, la respuesta fallida de la solicitud HTTP
     axios.get.mockRejectedValue(new Error('Request failed'));
-
-    // Objeto link a validar
     const link = {
       text: 'Invalid Link',
       href: 'https://www.invalidlink.com',
     };
-
-    // Realiza la prueba llamando a la función validateLink
     return validateLink(link).then((validatedLink) => {
-      // Verifica que la fx haya resuelto correctamente con el objeto link validado con status 404
       expect(validatedLink).toEqual({
         text: 'Invalid Link',
         href: 'https://www.invalidlink.com',
@@ -149,14 +132,13 @@ describe('calculateStats', () => {
       { href: 'https://example.com/page1', status: 200 },
       { href: 'https://example.com/page2', status: 404 },
       { href: 'https://example.com/page3', status: 200 },
-      { href: 'https://example.com/page1', status: 200 }, // Duplicate link
+      { href: 'https://example.com/page1', status: 200 },
     ];
     const result = calculateStats(links);
     expect(result.totalLinks).toBe(4);
     expect(result.uniqueLinks).toBe(3);
     expect(result.brokenLinks).toBe(1);
   });
-
   it('Should return correct stats when there are no broken links', () => {
     const links = [
       { href: 'https://example.com/page1', status: 200 },
@@ -168,7 +150,6 @@ describe('calculateStats', () => {
     expect(result.uniqueLinks).toBe(3);
     expect(result.brokenLinks).toBe(0);
   });
-
   it('Should return correct stats for empty link array', () => {
     const links = [];
     const result = calculateStats(links);
